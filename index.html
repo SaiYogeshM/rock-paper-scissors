@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Rock Paper Scissors</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #1e1e2f;
+      color: #fff;
+      text-align: center;
+      padding: 50px;
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+    .choices {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+    .choice {
+      border: 2px solid #fff;
+      border-radius: 10px;
+      padding: 15px 30px;
+      cursor: pointer;
+      transition: transform 0.2s, background 0.2s;
+    }
+    .choice:hover {
+      background-color: #333;
+      transform: scale(1.1);
+    }
+    .result {
+      font-size: 1.5rem;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Rock Paper Scissors ✊🖐️✌️</h1>
+  <div class="choices">
+    <div class="choice" onclick="play('rock')">Rock ✊</div>
+    <div class="choice" onclick="play('paper')">Paper 🖐️</div>
+    <div class="choice" onclick="play('scissors')">Scissors ✌️</div>
+  </div>
+
+  <div class="result" id="result"></div>
+
+  <script>
+    function play(userChoice) {
+      const choices = ['rock', 'paper', 'scissors'];
+      const computerChoice = choices[Math.floor(Math.random() * 3)];
+      
+      let result = "";
+      if (userChoice === computerChoice) {
+        result = "It's a Draw! 😐";
+      } else if (
+        (userChoice === 'rock' && computerChoice === 'scissors') ||
+        (userChoice === 'paper' && computerChoice === 'rock') ||
+        (userChoice === 'scissors' && computerChoice === 'paper')
+      ) {
+        result = "You Win! 🎉";
+      } else {
+        result = "You Lose! 💀";
+      }
+
+      document.getElementById("result").innerHTML = `
+        You chose <strong>${userChoice}</strong><br>
+        Computer chose <strong>${computerChoice}</strong><br><br>
+        <strong>${result}</strong>
+      `;
+    }
+  </script>
+</body>
+</html>
